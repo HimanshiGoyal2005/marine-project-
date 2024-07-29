@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Below Water</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .body {
+            overflow: hidden;
+        }
+
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .navbar {
+            overflow: hidden;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: right;
+        }
+
+        .navbar li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        .navbar li a {
+            padding: 5px 5px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar li a.active {
+            border-bottom: 2px solid white;
+        }
+
+        .item1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            z-index: 2;
+            margin-top: 100px;
+            overflow: hidden;
+        }
+
+        .first {
+            height: 300px;
+            width: 300px;
+            opacity: 0.5;
+        }
+
+        .text {
+            color: rgb(49, 50, 51);
+            font-weight: 600;
+            text-shadow: black;
+            font-size: 50px;
+        }
+
+        .text h1 {
+            border: 10px dotted black;
+            padding: 15px;
+            background: lightblue;
+            background-clip: padding-box;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slides img {
+            width: 100%;
+            display: none;
+        }
+
+        img.displaySlide {
+            display: block;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        .slider button {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%);
+            padding: 10px 15px;
+            font-size: 1rem;
+            background-color: hsla(0, 6%, 85%, 0.1);
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .5
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .graphs {
+            margin: 20px;
+        }
+
+        .text1 {
+            line-height: 60px;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            margin-left: 50px;
+        }
+
+        .text1 p {
+            font-size: 25px;
+        }
+
+        .item4 {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .worldMap {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1em;
+            position: relative;
+        }
+
+        .worldMap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .title {
+            text-align: center;
+            color: #fff;
+            margin: 2em 0;
+            padding: 0 1em;
+        }
+
+        .title p {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 400px;
+            height: 2px;
+            margin: 0 auto;
+            margin-top: 20px;
+            color: white
+        }
+
+        .pin {
+            background: #4362f8;
+            position: absolute;
+            width: 0.7em;
+            height: 0.7em;
+            border-radius: 50%;
+        }
+
+        .pin::before {
+            content: '';
+            background: #4362f8;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: pulse 1.3s ease-in-out infinite;
+        }
+
+        .pin span {
+            display: inline-block;
+            white-space: nowrap;
+            position: absolute;
+            left: 1.5em;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border-radius: 3em;
+            padding: 0.3em 0.6em;
+            font-size: 0.9em;
+        }
+
+        .India {
+            top: 419%;
+            left: 65%;
+        }
+
+        .China {
+            top: 411%;
+            left: 67%;
+        }
+
+        .Indonesia {
+            top: 426%;
+            left: 69%;
+        }
+
+        .Brazil {
+            top: 430%;
+            left: 39%;
+        }
+
+        .Vietnam {
+            top: 417%;
+            left: 67.2%;
+        }
+
+        .Phillippines {
+            top: 421%;
+            left: 71%;
+        }
+
+        .Mexico {
+            top: 414%;
+            left: 28%;
+        }
+
+        .pin.Egypt {
+            top: 412%;
+            left: 53%;
+        }
+
+        .pin.Japan {
+            top: 407%;
+            left: 74%;
+        }
+
+        .pin.United.Kingdom {
+            top: 398%;
+            left: 47%;
+        }
+
+        @keyframes pulse {
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2.5);
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .item1 {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .first {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .text {
+                font-size: 30px;
+            }
+
+            .slider {
+                height: 60vh;
+            }
+
+            .text1 {
+                flex-direction: column;
+                margin-left: 0;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .text1 p {
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            table {
+                width: 90%;
+            }
+
+            .graphs {
+                margin: 0;
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar ul {
+                text-align: center;
+            }
+
+            .navbar li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .item1 {
+                margin-top: 60px;
+            }
+
+            .item3 h2 {
+                font-size: 40px;
+            }
+
+            .slider {
+                height: 50vh;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .graphs {
+                width: 100%;
+                padding: 0;
+            }
+
+            .text1 {
+                margin: 0;
+                padding: 20px;
+            }
+
+            .text1 p {
+                font-size: 18px;
+                line-height: 25px;
+                font-size: 1.1em;
+                color: #555;
+                line-height: 1.6;
+                text-align: justify;
+            }
+
+            table {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .title {
+                font-size: 14px;
+            }
+
+            .worldMap {
+                font-size: 13px;
+            }
+
+            .slider {
+                height: 40vh;
+            }
+
+            .text1 p {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            .item3 h2 {
+                font-size: 30px;
+            }
+
+            .graphs img {
+                width: 100%;
+            }
+
+            .pin span {
+                font-size: 0.7em;
+                padding: 0.2em 0.4em;
+            }
+        }
+
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .prev, .next {
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prev, .next {
+                padding: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="http://127.0.0.1:5500/2141798-uhd_3840_2160_25fps%20-%20Copy.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+    </video>
+    <nav class="navbar">
+        <ul>
+            <li> <i style='font-size:24px' class='fas'>&#xf406;</i></li>
+            <li><a href="http://127.0.0.1:5500/home.html">HOME</a></li>
+            <li><a href="http://127.0.0.1:5500/gallery.html">GALLERY</a></li>
+            <li><a href="http://127.0.0.1:5500/graphs.html">GRAPHS</a></li>
+            <li><a href="http://127.0.0.1:5500/mapping.html">MAPPING</a></li>
+            <li><a href="#events">EVENTS</a></li>
+            <li><a href="#contacts">CONTACTS</a></li>
+        </ul>
+    </nav>
+    <section class="main">
+        <div class="item1">
+            <img class="first" src="http://127.0.0.1:5500/Web-ocean-pollution-plastic-Fotolia_125820453_S.jpg" alt="Image description" />
+            <div class="text">
+                <h1>
+                    Marine Life Conservation <br />
+                    Awareness Platform
+                </h1>
+            </div>
+        </div>
+        <div class="item2">
+            <div class="slider">
+                <div class="slides">
+                    <img class="slide" src="images/slide1.jpg" alt="Image #1">
+                    <img class="slide" src="images/slide2.jpg" alt="Image #2">
+                    <img class="slide" src="images/slide3.jpg" alt="Image #3">
+                    <img class="slide" src="images/slide4.jpg" alt="Image #3">
+                    <img class="slide" src="images/slide5.jpg" alt="Image #3">
+                </div>
+                <button class="prev" onclick="prevSlide()">&#10094</button>
+                <button class="next" onclick="nextSlide()">&#10095</button>
+            </div>
+        </div>
+        <div class="item3">
+            <center> <h2 style="font-size: 50px;">GRAPHS</h2></center>
+            <div class="hero">
+                <div class="graphs">
+                    <img class="second" src="graph image.jpeg" alt="" />
+                </div>
+                <div class="text1">
+                    <p>
+                        A team of researcher in united states and australia led by jenna jambeck,an environmental engineer at the university of georgia, analyzed plastic waste levels in the world's oceans.They found that china and indonesia is top source of plastic bottles,bags and other rubbish clogging up global sea lanes.Together,both nations account for more than third of plastic detritus in global waters,according to a report in the wall street journal.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item4">
+            <div class="title">
+                <h1>Ranked: The top 10 countries that dump the most plastic into the ocean</h1>
+                <p>
+                <table border="2px">
+                    <tr>
+                        <th>Countries Name</th>
+                        <th>Plastic Waste</th>
+                    </tr>
+                    <tr>
+                        <td>India</td>
+                        <td>126.5 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>China</td>
+                        <td>70.7 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Indonesia</td>
+                        <td>56.3 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Brazil</td>
+                        <td>38 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Vietnam</td>
+                        <td>36.7 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Philippines</td>
+                        <td>33.7 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Egypt</td>
+                        <td>27.7 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Mexico</td>
+                        <td>3.5 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>Japan</td>
+                        <td>1.8 million kg of plastic</td>
+                    </tr>
+                    <tr>
+                        <td>United Kingdom</td>
+                        <td>703 thousand kg of plastic</td>
+                    </tr>
+                </table>
+                </p>
+            </div>
+            <div class="mappp">
+                <div class="worldMap">
+                    <img src="worldmap.png" alt="Map">
+                </div>
+                <div class="pin India">
+                    <span>India</span>
+                </div>
+                <div class="pin China">
+                    <span>China</span>
+                </div>
+                <div class="pin Indonesia">
+                    <span>Indonesia</span>
+                </div>
+                <div class="pin Brazil">
+                    <span>Brazil</span>
+                </div>
+                <div class="pin Vietnam">
+                    <span>Vietnam</span>
+                </div>
+                <div class="pin Phillippines">
+                    <span>Phillippines</span>
+                </div>
+                <div class="pin Mexico">
+                    <span>Mexico</span>
+                </div>
+                <div class="pin Egypt">
+                    <span>Egypt</span>
+                </div>
+                <div class="pin Japan">
+                    <span>Japan</span>
+                </div>
+                <div class="pin United Kingdom">
+                    <span>United Kingdom</span>
+                </div>
+            </div>
+        </div>
+        <div class="item5">
+            <center> <h2 style="font-size: 50px;">EVENTS</h2></center>
+            <div class="slider">
+                <div class="slides">
+                  <div class="slide">
+                    <img src="anu.jpg" alt="Event 1" />
+                    <div class="caption">
+                      <h2>Event 1</h2>
+                      <p>Description for Event 1</p>
+                    </div>
+                  </div>
+                  <div class="slide">
+                    <img src="a.jpg" alt="Event 2" />
+                    <div class="caption">
+                      <h2>Event 2</h2>
+                      <p>Description for Event 2</p>
+                    </div>
+                  </div>
+                  <div class="slide">
+                    <img src="b.jpg" alt="Event 3" />
+                    <div class="caption">
+                      <h2>Event 3</h2>
+                      <p>Description for Event 3</p>
+                    </div>
+                  </div>
+                  <div class="slide">
+                    <img src="c.jpg" alt="Event 4" />
+                    <div class="caption">
+                      <h2>Event 4</h2>
+                      <p>Description for Event 4</p>
+                    </div>
+                  </div>
+                  <div class="slide">
+                    <img src="d.jpg" alt="Event 5" />
+                    <div class="caption">
+                      <h2>Event 5</h2>
+                      <p>Description for Event 5</p>
+                    </div>
+                  </div>
+                  <div class="slide">
+                    <img src="e.jpg" alt="Event 6" />
+                    <div class="caption">
+                      <h2>Event 6</h2>
+                      <p>Description for Event 6</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="navigation">
+                  <button class="prev">&#10094;</button>
+                  <button class="next">&#10095;</button>
+                </div>
+              </div>
+        </div>
+        <div class="item6"></div>
+    </section>
+    <script src="gallery.js"></script>
+    <script src="events.js"></script>
+</body>
+</html>

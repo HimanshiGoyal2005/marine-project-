@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .body {
+        overflow: hidden;
+      }
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+        object-fit: cover;
+      }
+      .navbar {
+        overflow: hidden;
+        padding: 20px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .navbar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: right;
+      }
+
+      .navbar li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      .navbar li a {
+        padding: 5px 5px;
+        text-decoration: none;
+        color: white;
+      }
+
+      .navbar li a.active {
+        border-bottom: 2px solid white;
+      }
+      .hero {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      .graphs {
+        margin: 20px;
+      }
+      .text1 {
+        line-height: 60px;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        margin-left: 50px;
+      }
+      .text1 p {
+        font-size: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+      <source
+        src="http://127.0.0.1:5500/2141798-uhd_3840_2160_25fps.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support HTML5 video.
+    </video>
+    <nav class="navbar">
+      <ul>
+        <li><a href="http://127.0.0.1:5500/home.html">HOME</a></li>
+        <li><a href="http://127.0.0.1:5500/gallery.html">GALLERY</a></li>
+        <li><a href="http://127.0.0.1:5500/graphs.html">GRAPHS</a></li>
+        <li><a href="http://127.0.0.1:5500/mapping.html">MAPPING</a></li>
+        <li><a href="#events">EVENTS</a></li>
+        <li><a href="#contacts">CONTACTS</a></li>
+      </ul>
+    </nav>
+    <section class="main">
+      <div class="item3">
+        <center><h2 style="font-size: 50px">GRAPHS</h2></center>
+        <div class="hero">
+          <div class="graphs">
+            <img class="second" src="graph image.jpeg" alt="" />
+          </div>
+          <div class="text1">
+            <p>
+              A team of researcher in united states and australia led by jenna
+              jambeck,an enviromental engineer at the university of georgia,
+              analyzed plastic waste levels in the world's oceans.They found
+              that china and indonesia is top source of plastic bottles,bags and
+              other rubbish clogging up global sea lanes.Together,both nations
+              account for more than third of plastic detritus in global
+              waters,according to a report in the wall street journal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

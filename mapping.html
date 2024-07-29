@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .body {
+        overflow: hidden;
+      }
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+        object-fit: cover;
+      }
+      .navbar {
+        overflow: hidden;
+        padding: 20px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .navbar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: right;
+      }
+
+      .navbar li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      .navbar li a {
+        padding: 5px 5px;
+        text-decoration: none;
+        color: white;
+      }
+
+      .navbar li a.active {
+        border-bottom: 2px solid white;
+      }
+      .item4 {
+        margin: 0;
+        font-family: sans-serif;
+      }
+      .worldMap {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1em;
+        position: relative;
+      }
+      .worldMap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .title {
+        text-align: center;
+        color: #fff;
+        margin: 2em 0;
+        padding: 0 1em;
+      }
+      .title p {
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 400px;
+        height: 2px;
+        margin: 0 auto;
+        margin-top: 20px;
+        color: white;
+      }
+
+      .pin {
+        background: #4362f8;
+        position: absolute;
+        width: 0.7em;
+        height: 0.7em;
+        border-radius: 50%;
+      }
+      .pin::before {
+        content: "";
+        background: #4362f8;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        animation: pulse 1.3s ease-in-out infinite;
+      }
+      .pin span {
+        display: inline-block;
+        white-space: nowrap;
+        position: absolute;
+        left: 1.5em;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        border-radius: 3em;
+        padding: 0.3em 0.6em;
+        font-size: 0.9em;
+      }
+      .India {
+        top: 419%;
+        left: 65%;
+      }
+      .China {
+        top: 411%;
+        left: 67%;
+      }
+      .Indonesia {
+        top: 426%;
+        left: 69%;
+      }
+      .Brazil {
+        top: 430%;
+        left: 39%;
+      }
+      .Vietnam {
+        top: 417%;
+        left: 67.2%;
+      }
+      .Phillippines {
+        top: 421%;
+        left: 71%;
+      }
+      .Mexico {
+        top: 414%;
+        left: 28%;
+      }
+      .pin.Egypt {
+        top: 412%;
+        left: 53%;
+      }
+
+      .pin.Japan {
+        top: 407%;
+        left: 74%;
+      }
+      .pin.United.Kingdom {
+        top: 398%;
+        left: 47%;
+      }
+
+      @keyframes pulse {
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2.5);
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .worldMap {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+      <source
+        src="http://127.0.0.1:5500/2141798-uhd_3840_2160_25fps.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support HTML5 video.
+    </video>
+    <nav class="navbar">
+      <ul>
+        <li><a href="http://127.0.0.1:5500/home.html">HOME</a></li>
+        <li><a href="http://127.0.0.1:5500/gallery.html">GALLERY</a></li>
+        <li><a href="http://127.0.0.1:5500/graphs.html">GRAPHS</a></li>
+        <li><a href="http://127.0.0.1:5500/mapping.html">MAPPING</a></li>
+        <li><a href="#events">EVENTS</a></li>
+        <li><a href="#contacts">CONTACTS</a></li>
+      </ul>
+    </nav>
+    <section class="main"></section>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slider {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .slide img {
+        width: 500px;
+        height: 400px;
+        vertical-align: middle;
+        margin-left: 300px;
+        margin-top: 100px;
+      }
+
+      .caption {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-left: 300px;
+      }
+
+      .navigation {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+
+      .navigation button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .navigation button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="anu.jpg" alt="Event 1" />
+          <div class="caption">
+            <h2>Event 1</h2>
+            <p>Description for Event 1</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="a.jpg" alt="Event 2" />
+          <div class="caption">
+            <h2>Event 2</h2>
+            <p>Description for Event 2</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="b.jpg" alt="Event 3" />
+          <div class="caption">
+            <h2>Event 3</h2>
+            <p>Description for Event 3</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="c.jpg" alt="Event 4" />
+          <div class="caption">
+            <h2>Event 4</h2>
+            <p>Description for Event 4</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="d.jpg" alt="Event 5" />
+          <div class="caption">
+            <h2>Event 5</h2>
+            <p>Description for Event 5</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="e.jpg" alt="Event 6" />
+          <div class="caption">
+            <h2>Event 6</h2>
+            <p>Description for Event 6</p>
+          </div>
+        </div>
+      </div>
+      <div class="navigation">
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+    </div>
+    <script src="events.js"></script>
+  </body>
+</html>
